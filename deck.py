@@ -14,9 +14,10 @@ class Deck:
     
     def draw_card(self) -> int:
         """
-        Returns a random card from the deck, weighed according to how many are left, removing the
-        drawn card from the deck. 0 and 1 are 10 and Ace respectively, 2 through 9 are their
-        literal value. Reshuffles if under the min_cards threshold after drawing.
+        Draws a random card from the deck, weighed according to how many are left, removing the
+        drawn card from the deck. Returns between 1 and 13, 1 is Ace, 2 through 10 are their
+        literal value, then 11/12/13 for J/Q/K. Reshuffles if under the min_cards threshold after
+        drawing.
         """
         card_drawn_number = random.randint(0, self.num_cards - 1)
         card_tally = 0
@@ -28,7 +29,7 @@ class Deck:
                 self.card_array[card_index] -= 1
                 if self.num_cards <= self.min_cards:
                     self.reshuffle()
-                return card_index
+                return card_index + 1
             card_index += 1
     
     def reshuffle(self):
@@ -36,19 +37,18 @@ class Deck:
         Initialises the card_array to its default values and num_cards.
         """
         self.num_cards = self.num_decks * 52
-        self.card_array = [self.num_decks * 4] * 10
-        # This spot holds the cards worth 10
-        self.card_array[0] *= 4
+        self.card_array = [self.num_decks * 4] * 13
     
     def print_deck(self):
         """
         Prints out the remaining cards in the deck. Jack chosen for the 10 value for aesthetics.
         """
-        output = f"Cards left: {self.num_cards}\nJ: {self.card_array[0]}\nA: {self.card_array[1]}\n"
-        card_index = 2
-        while card_index <= 9:
-            output += f"{card_index}: {self.card_array[card_index]}\n"
+        output = f"Cards left: {self.num_cards}\nA: {self.card_array[0]}\n"
+        card_index = 1
+        while card_index <= 8:
+            output += f"{card_index+1}: {self.card_array[card_index]}\n"
             card_index += 1
+        output += f"T: {self.card_array[9]}\nJ: {self.card_array[10]}\nQ: {self.card_array[11]}\nK: {self.card_array[12]}\n"
         print(output)
 
 if __name__ == '__main__':
