@@ -41,7 +41,7 @@ class Shoe:
     
     def print_deck(self):
         """
-        Prints out the remaining cards in the deck. Jack chosen for the 10 value for aesthetics.
+        Prints out the remaining cards in the deck.
         """
         output = f"Cards left: {self.num_cards}\nA: {self.card_array[0]}\n"
         card_index = 1
