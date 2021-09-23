@@ -1,16 +1,16 @@
 import random
 
-class Deck:
-    def __init__(self, num_decks: int, penetration: float = 0):
+class Shoe:
+    def __init__(self, num_decks: int, reshuffle_frac: float = 0):
         """
         params:
         num_decks: Number of decks to shuffle in
-        penetration: Portion of the deck not to be dealt before reshuffling
+        reshuffle_frac: Reshuffle the shoe when this portion of it remains (between 0 and 1)
         """
         self.num_decks = num_decks
         self.reshuffle()
-        # Penetration is stored to min_cards to ease future referencing
-        self.min_cards = penetration * self.num_cards
+        # reshuffle_frac is stored to min_cards to ease future referencing
+        self.min_cards = reshuffle_frac * self.num_cards
     
     def draw_card(self) -> int:
         """
@@ -52,7 +52,7 @@ class Deck:
         print(output)
 
 if __name__ == '__main__':
-    deck = Deck(2, 0.4)
+    shoe = Shoe(2, 0.6)
     for i in range(52):
-        deck.draw_card()
-    deck.print_deck()
+        shoe.draw_card()
+    shoe.print_deck()
