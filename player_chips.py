@@ -25,7 +25,6 @@ class PlayerChips:
         self.chips += self.bet * multiplier
         self.update_stats()
     
-    # Keeps highest and lowest updated
     def update_stats(self):
         """
         Updates highest and lowest if the current chip counts "beats" one of those values
